@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+  <head>
+    {% block head %}
+
+      <title>{% block title %}{{ SITENAME|striptags }}{% endblock title %}</title>
+
+      {% include 'partials/global/sub_head.html' %}
+
+    {% endblock head %}
+  </head>
+
+  <body>
+    <div class="flex flex-col min-h-screen">
+      {% block body %}
+
+        {% include 'partials/global/header.html' %}
+
+        <main class="flex-grow">
+          {% block content %}
+          {% endblock content %}
+        </main>
+
+        {% include 'partials/global/footer.html' %}
+
+        {% block tail %}
+          <script src="{{ SITEURL }}/theme/js/main.js"></script>
+        {% endblock tail %}
+
+        {% block extra_js %}{% endblock extra_js %}
+
+      {% endblock body %}
+    </div>
+  </body>
+</html>

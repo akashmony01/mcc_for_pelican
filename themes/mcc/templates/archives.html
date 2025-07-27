@@ -1,0 +1,13 @@
+{% extends "layout/base.html" %}
+
+{% block title %}{{ SITENAME|striptags }} - Archives{% endblock %}
+
+{% block content %}
+
+    {% include 'partials/section/post_archive.html'  %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ SITEURL }}/theme/js/post_filters.js"></script>
+{% endblock extra_js %}
