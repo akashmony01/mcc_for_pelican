@@ -1,19 +1,29 @@
 {% extends "layout/base.html" %}
 
+
 {% block title %}{{ SITENAME|striptags }} - Articles by {{ author }}{% endblock %}
 
-{% block content_title %}
-    <h2>Articles by {{ author }}</h2>
-{% endblock %}
+
+{% block content_title %}{% endblock %}
+
 
 
 {% block content %}
-    <ul>
-        {% for article in articles %}
-            <li>
-                <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a>
-                <span>({{ article.date.strftime('%Y-%m-%d') }})</span>
-            </li>
-        {% endfor %}
-    </ul>
+    {% set header_title = author %}
+    {% set header_subtitle = "Posts by this author" %}
+    {% set header_bg_img = "theme/images/background.svg" %}
+    {% include "partials/section/page_header.html" %}
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for article in articles %}
+                {% set post = article %}
+                {% include "partials/sub/post_archive_item.html" %}
+            {% endfor %}
+        </div>
+
+        <span class="block text-sm text-gray-500 dark:text-gray-400 mt-5">
+          {{ articles|count }} article{% if articles|count != 1 %}s{% endif %}
+        </span>
+    </div>
 {% endblock %}

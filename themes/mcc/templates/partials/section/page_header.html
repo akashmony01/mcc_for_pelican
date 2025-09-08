@@ -1,6 +1,8 @@
 <section
   class="relative py-20 bg-cover bg-center"
+  {% if header_bg_img %}
   style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{{ SITEURL }}/{{ header_bg_img }}')"
+  {% endif %}
 >
   <div class="container">
     <div class="max-w-3xl mx-auto text-center text-white">
@@ -9,7 +11,7 @@
       </h1>
       {% if header_subtitle %}
         <p class="text-xl md:text-2xl">
-            {{ subtitle }}
+            {{ header_subtitle }}
         </p>
       {% endif %}
     </div>

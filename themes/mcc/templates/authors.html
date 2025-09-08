@@ -3,10 +3,24 @@
 {% block title %}{{ SITENAME|striptags }} - Authors{% endblock %}
 
 {% block content %}
-    <h2>Authors on {{ SITENAME }}</h2>
-    <ul>
-        {% for author, articles in authors|sort %}
-            <li><a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a> ({{ articles|count }})</li>
-        {% endfor %}
-    </ul>
+    
+
+    {% set header_title = "Authors" %}
+    {% set header_subtitle = "Meet the contributors to this site." %}
+    {% set header_bg_img = "theme/images/background.svg" %}
+    {% include "partials/section/page_header.html" %}
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for author, articles in authors|sort %}
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col items-center text-center transition hover:shadow-lg">
+                    <div class="w-16 h-16 mb-4 rounded-full bg-gradient-to-tr from-blue-400 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
+                        {{ author[0]|upper }}
+                    </div>
+                    <a href="{{ SITEURL }}/{{ author.url }}" class="text-lg font-semibold text-blue-700 dark:text-blue-300 hover:underline">{{ author }}</a>
+                    <span class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ articles|count }} article{% if articles|count != 1 %}s{% endif %}</span>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
